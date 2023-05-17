@@ -16,6 +16,10 @@ target = inventory[int(userChoice)]
 async def check(sensors,num):
     return sensors[num] > 150
 
+@event(robot.when_bumped,[])
+async def bumped_robot():
+    robot.stop()
+
 @event(robot.when_play)
 async def play(robot):
     for i in inventory:
