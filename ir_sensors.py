@@ -24,3 +24,5 @@ async def play(robot):
         if await check (sensors,5):
             await robot.turn_right(90)
 robot.play()
+
+# this does make the ir sensors work however it is only basic and can break unexpectidly depending upon what changes were made
