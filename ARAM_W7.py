@@ -27,28 +27,34 @@ async def check(sensors,num):
 
 #stops robot when bumped
 #unused
-@event(robot.when_bumped,[])
-async def bumped_robot():
-    robot.stop()
+@event(robot.when_bumped, [True, True])
+async def bumped(robot):
+    await robot.turn_left(90)
+    await robot.move(25)
+    await robot.turn_right(90)
+    await robot.move(25)
+
+
 
 #main code 
 @event(robot.when_play)
 async def play(robot):
+    await robot.set_wheel_speeds(speed, speed)
     #test case to go through each inv item
-    for i in inventory:
+    #for i in inventory:
         #navigates to the inv item from dictionary
-        await robot.navigate_to(inventory[i][0], inventory[i][1])
+        #await robot.navigate_to(inventory[i][0], inventory[i][1])
         #initializes sensor check
-        sensors = (await robot.get_ir_proximity()).sensors
+        #sensors = (await robot.get_ir_proximity()).sensors
         #not breaking the navigate command, doing weird turns at the corners
         #only checking once for each sensor
-        print(sensors)
-        if await check(sensors,0):
-            await robot.turn_right(90)
-        if await check(sensors,3):
-            await robot.move(-2)
-            await robot.turn_left(90)
-        if await check (sensors,5):
-            await robot.turn_left(90)
+        #print(sensors)
+        #if await check(sensors,0):
+        #    await robot.turn_right(90)
+        #if await check(sensors,3):
+        #    await robot.move(-2)
+         #   await robot.turn_left(90)
+        #if await check (sensors,5):
+        #    await robot.turn_left(90)
 
 robot.play()
