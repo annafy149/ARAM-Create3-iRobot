@@ -5,7 +5,7 @@ robot = Create3(Bluetooth())
 speed = 12
 #userChoice = input("select item (1-5): \n\n")
 userChoice = 1
-box_dimension = a = 200
+box_dimension = a = 100
 item1 = (a, a)
 item2 = (-a, a)
 item3 = (a, -a)
