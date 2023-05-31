@@ -35,12 +35,9 @@ async def bumped(robot):
 async def play(robot):
     await robot.set_wheel_speeds(speed, speed)
     while True:
-
+        
         if status == 'bump':
-            if bumpcount % 2 != 0:
-                await backoff_left(robot)
-            else: await backoff_right(robot)
-            pos = await robot.get_position()
+            await backoff_left(robot)
 
         if status == 'no bump':
             await forward(robot)
