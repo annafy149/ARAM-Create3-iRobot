@@ -7,10 +7,10 @@ import * as TaskManager from "expo-task-manager"
 import * as Location from "expo-location"
 import {getDistance} from 'geolib';
 //import { db } from './config';
-import Radius from './Radius';
+import Navigation from './Navigation';
 import Home from './Home';
-import About from './About';
-import Help from './Help';
+import Opening from './Opening';
+import Order from './Order';
 
 const LOCATION_TASK_NAME = "LOCATION_TASK_NAME"
 let foregroundSubscription = null

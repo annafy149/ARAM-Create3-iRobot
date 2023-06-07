@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, ImageBackground, Text, View, Button, Platform } from 'react-native';
-import Radius from './Radius';
+import Navigation from './Navigation';
 
 const image = {uri: 'https://uncoveringpa.com/wp-content/uploads/2017/08/Philly-from-South-Street-IMG_0560.jpg'};
 
