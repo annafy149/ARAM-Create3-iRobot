@@ -1,16 +1,8 @@
-import RPi.GPIO as GPIO
 from time import sleep
 import board
 import pyrebase
-#Disable warnings (optional)
-GPIO.setwarnings(False)
-#Select GPIO mode
-GPIO.setmode(GPIO.BCM)
-#Set buzzer - pin 23 as output
-buzzer = 23
+from Store_map_simulator import the_path 
 restart = True
-GPIO.setup(buzzer,GPIO.OUT)
-#Run forever loop
 i = 0
 
 config = {
@@ -25,60 +17,34 @@ db = firebase.database()
 
 while restart:
     trigger = input()
-    if trigger == 'Gun' or trigger == 'gun' or trigger == 'GUN':
-        weapon = 'Gun'
-        Alert = "Gun fire at Powelton Avenue"
-        print("Alert! "+ Alert)
+    if trigger == 'Origin':
+        print("Back Home!")
         print()
         data = {
-            "Latitude": '-'+'75.191750',
-            "Longitute": '39.961025',
-            "Weapon": weapon
+            "X datapoint": '-'+'75.191750',
+            "Y datapoint": '39.961025',
+            "Status": 'charging'
             }
-        db.child("WeaponDetection").child("1-set").set(data)
-        db.child("WeaponDetection").child("2-push").push(data)
-        print("Send Data to Firebase Using Raspberry Pi")
+        db.child("ARAM Navigation").child("1-set").set(data)
+        db.child("ARAM Navigation").child("2-push").push(data)
+        print("Send Data to Firebase Using Mobile app/Kiosk")
         print("----------------------------------------")
         print()
-        while i <= 15:
-            GPIO.output(buzzer,GPIO.HIGH)
-            print ("Beep")
-            sleep(0.5) # Delay in seconds
-            GPIO.output(buzzer,GPIO.LOW)
-            print ("No Beep")
-            sleep(0.5)
-            i = i + 1
-        i = 0
-    elif trigger == 'Knife' or trigger == 'knife' or trigger == 'KNIFE':
-        Alert = "Potential stabbing incident at Powelton Avenue"
-        weapon = 'Knife'
-        print("Alert! "+ Alert)
+
+    elif trigger == 'Product':
+        print("Destination Reached!")
         print()
         data = {
-            "Latitude": '-'+'75.191750',
-            "Longitute": '39.961025',
-            "Weapon": weapon
+            "X datapoint": '-'+'75.191750',
+            "Y datapoint": '39.961025',
+            "Weapon": ''
             }
-        db.child("WeaponDetection").child("1-set").set(data)
-        db.child("WeaponDetection").child("2-push").push(data)
-        print("Send Data to Firebase Using Raspberry Pi")
+        db.child("ARAM Navigation").child("1-set").set(data)
+        db.child("ARAM Navigation").child("2-push").push(data)
+        print("Send Data to Firebase Using Mobile app/Kiosk")
         print("----------------------------------------")
         print()
-        while i <= 8:
-            GPIO.output(buzzer,GPIO.HIGH)
-            print ("Beep")
-            sleep(0.67) # Delay in seconds
-            GPIO.output(buzzer,GPIO.LOW)
-            print ("No Beep")
-            sleep(0.33)
-            GPIO.output(buzzer,GPIO.HIGH)
-            print ("Beep")
-            sleep(0.33) # Delay in seconds
-            GPIO.output(buzzer,GPIO.LOW)
-            print ("No Beep")
-            sleep(0.33)
-            i = i + 1
-        i = 0
+        
     else:
         restart = True
     
